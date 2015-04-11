@@ -1,0 +1,21 @@
+<h1>Sign Up</h1>
+		<%= form_for(@user) do |f| %>
+		  <%= f.label :first_name %>
+		  <%= f.text_field :first_name, class: 'form-control' %>
+
+		  <%= f.label :last_name %>
+		  <%= f.text_field :last_name, class: 'form-control' %>
+
+		  <%= f.label :email %>
+		  <%= f.text_field :email, class: 'form-control' %>
+
+		  <%= f.label :password %>
+		  <%= f.password_field :password, class: 'form-control' %>
+
+		  <%= f.label :image_url %>
+		  <%= f.text_field :image_url, class: 'form-control' %>
+
+		  <%= f.submit  "Create Account", class: "btn btn-primary" %>
+		<% end %>
+	</div>
+</div>
