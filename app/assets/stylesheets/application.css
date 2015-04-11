@@ -34,3 +34,9 @@ body {
   margin-right: auto;
   padding: 20px 20px 20px 20px;
 }
+
+#map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px
+}

@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
 
@@ -21,7 +22,6 @@
 			</button>
 			<%= link_to "SkyCast", root_url, class: "navbar-brand" %>
 		</div>
-		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<% if current_user %>
@@ -35,7 +35,6 @@
 				<%end %>
 			</ul>
 		</div>
-		<!-- /.navbar-collapse -->
 	</div>
 </nav>
 
