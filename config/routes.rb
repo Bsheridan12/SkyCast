@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
-  resources :welcome, only: [:index]
+  resources :welcome, only: [:index, :create]
   resources :users, only: [:create, :new, :show]
   resources :locations, only: [:create, :new, :show, :destroy]
   resources :hourly_forecast, only: [:index, :show]

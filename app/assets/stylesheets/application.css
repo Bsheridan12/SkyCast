@@ -16,8 +16,12 @@
  *= require_self
  */
 
+html, body {
+  height: 100%;
+}
+
 body {
-    padding-top: 55px;
+    padding-top: 65px;
 }
 
 .brows-btns {
@@ -34,9 +38,9 @@ body {
   margin-right: auto;
   padding: 20px 20px 20px 20px;
 }
-
-#map-canvas {
-  height: 100%;
-  margin: 0px;
-  padding: 0px
+#map-canvas { 
+  height: 100%; 
+  margin: 0; 
+  width: 50%;
+  height: 50%;
 }

@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150411190411) do
     t.integer  "temperature_max_time"
     t.float    "humidity"
     t.float    "wind_speed"
-    t.float    "visiblity"
+    t.float    "visibility"
     t.integer  "location_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150411190411) do
     t.float    "temperature"
     t.float    "humidity"
     t.float    "wind_speed"
-    t.float    "visiblity"
+    t.float    "visibility"
     t.integer  "location_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false

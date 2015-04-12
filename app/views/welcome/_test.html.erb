@@ -1,0 +1,17 @@
+<div id="forecast-div">
+	<div>
+		<h2>Daily</h2>
+	<% @daily.each do |daily| %>
+		<p><%= Time.at(daily.time).strftime("%m/%d/%Y") %> : <%= daily.summary %></p>
+	<% end %>
+	</div>
+
+	<div>
+		<h2>Hourly</h2>
+	<% @hourly.each do |hourly| %>
+		<p><%= Time.at(hourly.time).strftime("%m/%d/%Y") %> : <%= hourly.summary %></p>
+	<% end %>
+		
+	</div>
+
+</div>

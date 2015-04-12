@@ -8,7 +8,7 @@ class CreateHourlyForecasts < ActiveRecord::Migration
     	t.float		:temperature
     	t.float		:humidity
     	t.float		:wind_speed
-    	t.float		:visiblity
+    	t.float		:visibility
 
     	t.references :location
 
