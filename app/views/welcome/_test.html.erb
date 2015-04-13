@@ -1,4 +1,6 @@
 <div id="forecast-div">
+
+	<h1>Forecast for: <%= @location.formatted_address %></h1>
 	<div>
 		<h2>Daily</h2>
 	<% @daily.each do |daily| %>

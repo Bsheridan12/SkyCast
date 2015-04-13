@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
   def create
   	ForecastIO.api_key = "b5600c8d9df775b6c3bbdd0f449b53b3"
 
-  	@location = Location.create(latitude: params[:latitude], longitude: params[:longitude])
+  	@location = Location.create(latitude: params[:latitude], longitude: params[:longitude], formatted_address: params[:formatted_address])
 
   	@forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
 

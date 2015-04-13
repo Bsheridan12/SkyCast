@@ -53,10 +53,11 @@ ActiveRecord::Schema.define(version: 20150411190411) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
+    t.string   "formatted_address"
     t.decimal  "latitude"
     t.decimal  "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "user_locations", force: :cascade do |t|
