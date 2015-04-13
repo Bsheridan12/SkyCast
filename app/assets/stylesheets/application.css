@@ -24,6 +24,14 @@ body {
     padding-top: 65px;
 }
 
+.main-container {
+    overflow: visible;
+  margin: 5px auto;
+  width: 80%;
+  padding: 0px 20px 20px 20px;
+  text-align: center;
+}
+
 .brows-btns {
 	width: 30%;
 	margin: auto;
@@ -43,4 +51,14 @@ body {
   margin: 0; 
   width: 50%;
   height: 50%;
+}
+
+.forecast li {
+  width: 15%;
+  display: inline-block;
+}
+
+.location-search {
+  margin: auto;
+  width: 40%;
 }

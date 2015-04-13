@@ -1,0 +1,7 @@
+<div>
+	<h2>Hourly</h2>
+	<%= @hourly.count %>
+	<% @hourly.each do |hourly| %>
+		<p><%= Time.at(hourly.time).strftime("%A %d, %l:%M %P") %> : <%= hourly.summary %></p>
+	<% end %>
+</div>

@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150411190411) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
+    t.string   "zip"
     t.string   "formatted_address"
     t.decimal  "latitude"
     t.decimal  "longitude"

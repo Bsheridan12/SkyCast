@@ -1,5 +1,5 @@
 userCoords = [];
-formattedAddress = "";
+formattedAddress = {};
 
 function initialize(callback) {
   var mapOptions = {
@@ -15,8 +15,10 @@ function initialize(callback) {
     browserSupportFlag = true;
     navigator.geolocation.getCurrentPosition(function(position) {
       initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+      // grab data to pass to controller
       getFormattedAddress(initialLocation)
       userCoords = ([position.coords.latitude,position.coords.longitude])
+
       map.setCenter(initialLocation);
     }, function() {
       handleNoGeolocation(browserSupportFlag);
@@ -42,7 +44,12 @@ function initialize(callback) {
   function getFormattedAddress(initialLocation) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'latLng': initialLocation}, function(results, status) {
-      formattedAddress = results[3].formatted_address
+      formattedAddress = { 
+        fullAddress:results[3].formatted_address,
+        zip:results[3].address_components[0].long_name,
+        city:results[3].address_components[1].long_name,
+        state: results[3].address_components[3].short_name,
+        country: results[3].address_components[4].short_name }
     })
   }
 
@@ -53,18 +60,16 @@ function initialize(callback) {
 
     initialize();
 
-
-    $("#test").on("click", function(e) {
-      e.preventDefault();
-
+    setTimeout(function(){
       var request = $.ajax({
         url: "/welcome",
         type: "POST",
-        data: { latitude: userCoords[0], longitude: userCoords[1], formatted_address: formattedAddress }
+        data: {latitude: userCoords[0], longitude: userCoords[1], formatted_address: formattedAddress.fullAddress, zip: formattedAddress.zip, city: formattedAddress.city, state: formattedAddress.state, country: formattedAddress.country }
       })
 
       request.done(function(response){
         $("#forecast-div").html(response)
       })
-    })
+
+    }, 500)
   })

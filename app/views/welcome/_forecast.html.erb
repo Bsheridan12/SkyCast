@@ -1,0 +1,36 @@
+<div id="forecast-div">
+
+	<h1><%= @location.formatted_address %></h1>
+
+	<h3>Currently <%= @currently.to_i %></h3>
+
+	<div class="forecast">
+		<ul>
+			<li>DAY</li>
+			<% @daily.each do |daily| %>
+				<li><%= link_to Time.at(daily.time).strftime("%A").upcase, daily_forecast_path(daily.id) %></li>
+			<% end %>
+		</ul>
+
+		<ul>
+			<li>HIGH</li>
+			<% @daily.each do |daily| %>
+				<li><%=	daily.temperature_max.to_i %></li>
+			<% end %>
+		</ul>
+
+		<ul>
+			<li>LOW</li>
+			<% @daily.each do |daily| %>
+				<li><%= daily.temperature_min.to_i %></li>
+			<% end %>
+		</ul>
+
+		<ul>
+			<li>FORECAST</li>
+			<% @daily.each do |daily| %>
+				<li><%= daily.summary.truncate_words(2) %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
