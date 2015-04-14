@@ -1,5 +1,7 @@
+searchedLocation = [];
 userCoords = [];
 formattedAddress = {};
+initialLocation = "";
 
 function initialize(callback) {
   var mapOptions = {
@@ -40,21 +42,31 @@ function initialize(callback) {
     }
     map.setCenter(initialLocation);
   }
-
-  function getFormattedAddress(initialLocation) {
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'latLng': initialLocation}, function(results, status) {
-      formattedAddress = { 
-        fullAddress:results[3].formatted_address,
-        zip:results[3].address_components[0].long_name,
-        city:results[3].address_components[1].long_name,
-        state: results[3].address_components[3].short_name,
-        country: results[3].address_components[4].short_name }
-    })
-  }
-
 }
 
+function getFormattedAddress(initialLocation) {
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({'latLng': initialLocation}, function(results, status) {
+    formattedAddress = { 
+      fullAddress:results[3].formatted_address,
+      zip:results[3].address_components[0].long_name,
+      city:results[3].address_components[1].long_name,
+      state: results[3].address_components[3].short_name,
+      country: results[3].address_components[4].short_name }
+  })
+}
+
+function getLatLong(address) {
+  var geo = new google.maps.Geocoder;
+
+  geo.geocode({"address":address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      searchedLocation = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  })
+}
 
   $(document).ready(function(){
 
@@ -71,5 +83,23 @@ function initialize(callback) {
         $("#forecast-div").html(response)
       })
 
-    }, 500)
+    }, 700)
+
+    $(".new_location").on("submit", function(e) {
+      e.preventDefault();
+      var address = $(this).serialize();
+
+      getLatLong(address);
+
+      var request = $.ajax({
+        url: "/locations",
+        type: "POST",
+        data: {latitude: searchedLocation[0], longitude: searchedLocation[1]}
+      });
+
+      request.done(function(response){
+        console.log(response)
+      })
+    })
+
   })
