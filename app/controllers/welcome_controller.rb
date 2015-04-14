@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
 
   	@daily = DailyForecast.where(location: @location).where("time >= ?", 1.day.ago.to_i ).order(:time).limit(4)
 
-  	if @daily.count < 4 
+  	if @daily.count < 4 || @daily == nil
 	  	@daily.each do |day|
 	  		day.destroy
 	  	end

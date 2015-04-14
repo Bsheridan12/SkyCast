@@ -47,6 +47,7 @@ function initialize(callback) {
 function getFormattedAddress(initialLocation) {
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({'latLng': initialLocation}, function(results, status) {
+    console.log(results)
     formattedAddress = { 
       fullAddress:results[3].formatted_address,
       zip:results[3].address_components[0].long_name,
@@ -83,23 +84,35 @@ function getLatLong(address) {
         $("#forecast-div").html(response)
       })
 
-    }, 700)
+    }, 1200)
+
 
     $(".new_location").on("submit", function(e) {
+      console.log("test")
       e.preventDefault();
       var address = $(this).serialize();
 
       getLatLong(address);
+      
+      setTimeout(function(){
+        var newLocation =  new google.maps.LatLng(searchedLocation[0], searchedLocation[1])
 
-      var request = $.ajax({
-        url: "/locations",
-        type: "POST",
-        data: {latitude: searchedLocation[0], longitude: searchedLocation[1]}
-      });
+        getFormattedAddress(newLocation)
+      }, 300)
 
-      request.done(function(response){
-        console.log(response)
-      })
+      setTimeout(function(){
+      console.log(formattedAddress)
+        var request = $.ajax({
+          url: "/locations",
+          type: "POST",
+          data: {latitude: searchedLocation[0], longitude: searchedLocation[1], formatted_address: formattedAddress.fullAddress, zip: formattedAddress.zip, city: formattedAddress.city, state: formattedAddress.state, country: formattedAddress.country}
+        });
+
+        console.log(formattedAddress)
+        request.done(function(response){
+          console.log(response)
+        })
+      }, 600)
     })
 
   })

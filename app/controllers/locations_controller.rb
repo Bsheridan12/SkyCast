@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
 	def create
-		@location = Location.new(formatted_address: location_params)
+		@location = Location.create(formatted_address: location_params)
 		render :show
 	end
 

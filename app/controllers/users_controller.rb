@@ -23,11 +23,7 @@ class UsersController < ApplicationController
     ForecastIO.api_key = "b5600c8d9df775b6c3bbdd0f449b53b3"
 
     @forecast = ForecastIO.forecast(params[:latitude], params[:longitude])
-
-    p "--------------------------------------"
-    p params[:latitude]
-    p @forecast
-    
+   
     if logged_in?
       render :dashboard
     else
