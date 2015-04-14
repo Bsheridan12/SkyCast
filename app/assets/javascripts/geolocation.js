@@ -71,5 +71,5 @@ function initialize(callback) {
         $("#forecast-div").html(response)
       })
 
-    }, 500)
+    }, 600)
   })

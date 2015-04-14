@@ -2,12 +2,6 @@
 
 <div id="map-canvas" style="display: none;"></div>
 
-<div class="search-forecast">
-	<%= form_for @location do |f| %>
-		<%= f.text_field :formatted_address, placeholder: "Search Location", class: 'form-control location-search' %>
-	<% end %>
-</div>
-
 <div id="forecast-div">
 	<h2>Loading Forecast for your current location...</h2>
 </div>
