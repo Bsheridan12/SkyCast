@@ -1,8 +1,6 @@
 class WelcomeController < ApplicationController
   def index
   	ForecastIO.api_key = "b5600c8d9df775b6c3bbdd0f449b53b3"
-
-  	@location = Location.new
   end
 
   def create
@@ -14,12 +12,13 @@ class WelcomeController < ApplicationController
   		@forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
   	else
   		@location = Location.create(latitude: params[:latitude], longitude: params[:longitude], formatted_address: params[:formatted_address], city: params[:city], state: params[:state], zip: params[:zip], country: params[:country])
+  		puts "------------------------------"
   		@forecast = ForecastIO.forecast(@location.latitude, @location.longitude)
   	end
 
   	@daily = DailyForecast.where(location: @location).where("time >= ?", 1.day.ago.to_i ).order(:time).limit(4)
 
-  	if @daily.count < 4 
+  	if @daily.count < 4
 	  	@daily.each do |day|
 	  		day.destroy
 	  	end
